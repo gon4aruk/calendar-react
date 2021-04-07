@@ -1,0 +1,9 @@
+.popup {
+  &__content {
+    position: absolute;
+    background: #fff;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+}

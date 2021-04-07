@@ -12,6 +12,7 @@
   &__body {
     display: flex;
     overflow: auto;
+    padding-top: 5px;
   }
 
   &__week-container {
@@ -37,14 +38,19 @@
   }
 
   &__time-slot {
-    height: 59px;
+    height: 60px;
     position: relative;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
   }
 
   &__day-label {
     flex: 1;
   }
+}
+
+.calendar__body::-webkit-scrollbar {
+  width: 0;
 }
 
 .day-label {
