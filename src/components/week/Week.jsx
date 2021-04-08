@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './week.scss';
 
-const Week = ({ weekDates, events, handleDeleteEvent, openPopup }) => {
+const Week = ({ weekDates, events, openPopup }) => {
   if (!events) {
     return null;
   }

@@ -28,11 +28,11 @@ const Header = ({ weekDates, openModal, onChangeWeek }) => {
         <button className="navigation__today-btn button" onClick={() => onChangeWeek('today')}>
           Today
         </button>
-        <button className="icon-button navigation__nav-icon">
-          <i className="fas fa-chevron-left" name="prev" onClick={() => onChangeWeek('prev')}></i>
+        <button className="icon-button navigation__nav-icon" onClick={() => onChangeWeek('prev')}>
+          <i className="fas fa-chevron-left" name="prev"></i>
         </button>
-        <button className="icon-button navigation__nav-icon">
-          <i className="fas fa-chevron-right" name="next" onClick={() => onChangeWeek('next')}></i>
+        <button className="icon-button navigation__nav-icon" onClick={() => onChangeWeek('next')}>
+          <i className="fas fa-chevron-right" name="next"></i>
         </button>
         <span className="navigation__displayed-month">{`${currentMonth} ${currentYear}`}</span>
       </div>
