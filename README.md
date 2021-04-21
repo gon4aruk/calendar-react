@@ -11,27 +11,6 @@ The site is available at https://youthful-hopper-99d314.netlify.app/
 ## Start & watch
 
     $ npm start
-<<<<<<< HEAD
-
-## Build for production
-
-    $ npm run build
-
-**The tech stack is:**
-
-- HTML5
-- CSS3
-- Flexbox
-- Sass (Scss)
-- BEM methodology
-- JS(ES6)
-- moment.js
-- ReactJS
-- React hooks
-- Webpack
-
-### Author: Oleksandr Honcharuk
-=======
     
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
@@ -57,4 +36,4 @@ You will also see any lint errors in the console.
 - Webpack
 
 ### Author: Oleksandr Honcharuk
->>>>>>> 7b4142787a177e0a1244a8caa1cf57c17885a558
+
