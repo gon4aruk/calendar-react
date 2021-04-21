@@ -5,7 +5,7 @@ import Event from '../event/Event';
 import RedLine from '../redLine/RedLine';
 import { formatMins, getDateTime } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({ dataHour, hourEvents, handleDeleteEvent, openPopup, dataDayIsNow }) => {
+const Hour = ({ dataHour, hourEvents, getEventsFromServer, dataDayIsNow }) => {
   let redLine;
   if (new Date().getHours() === dataHour && dataDayIsNow) {
     redLine = <RedLine />;
@@ -32,7 +32,7 @@ const Hour = ({ dataHour, hourEvents, handleDeleteEvent, openPopup, dataDayIsNow
             time={`${eventStart} - ${eventEnd}`}
             title={title}
             id={id}
-            openPopup={openPopup}
+            getEventsFromServer={getEventsFromServer}
           />
         );
       })}
@@ -43,7 +43,8 @@ const Hour = ({ dataHour, hourEvents, handleDeleteEvent, openPopup, dataDayIsNow
 Hour.propTypes = {
   dataHour: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
-  openPopup: PropTypes.func.isRequired,
+  getEventsFromServer: PropTypes.func.isRequired,
+  dataDayIsNow: PropTypes.bool.isRequired,
 };
 
 export default Hour;

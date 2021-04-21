@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, handleDeleteEvent, openPopup }) => {
+const Day = ({ dataDay, dayEvents, getEventsFromServer }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -25,7 +25,7 @@ const Day = ({ dataDay, dayEvents, handleDeleteEvent, openPopup }) => {
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
-            openPopup={openPopup}
+            getEventsFromServer={getEventsFromServer}
             dataDayIsNow={dataDayIsNow}
           />
         );
@@ -37,7 +37,7 @@ const Day = ({ dataDay, dayEvents, handleDeleteEvent, openPopup }) => {
 Day.propTypes = {
   dataDay: PropTypes.number.isRequired,
   dayEvents: PropTypes.array.isRequired,
-  openPopup: PropTypes.func.isRequired,
+  getEventsFromServer: PropTypes.func.isRequired,
 };
 
 export default Day;

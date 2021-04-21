@@ -1,34 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
+import Modal from '../modal/Modal';
+import { getEvents } from '../../gateway/events';
 
 import './calendar.scss';
 
-const Calendar = ({ weekDates, events, handleDeleteEvent, openPopup }) => {
+const Calendar = ({ weekDates, modalIsOpen, closeModal }) => {
+  const [events, setEvents] = useState(null);
+
+  useEffect(() => {
+    getEventsFromServer();
+  }, []);
+
+  const getEventsFromServer = () => {
+    getEvents().then(events => {
+      setEvents(events);
+    });
+  };
+
   return (
-    <section className="calendar">
-      <Navigation weekDates={weekDates} />
-      <div className="calendar__body">
-        <div className="calendar__week-container">
-          <Sidebar />
-          <Week weekDates={weekDates} events={events} openPopup={openPopup} />
+    <>
+      <section className="calendar">
+        <Navigation weekDates={weekDates} />
+        <div className="calendar__body">
+          <div className="calendar__week-container">
+            <Sidebar />
+            <Week weekDates={weekDates} events={events} getEventsFromServer={getEventsFromServer} />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {modalIsOpen && <Modal closeModal={closeModal} getEventsFromServer={getEventsFromServer} />}
+    </>
   );
 };
 
 Calendar.propTypes = {
   weekDates: PropTypes.array.isRequired,
-  events: PropTypes.array,
-  openPopup: PropTypes.func.isRequired,
-};
-
-Calendar.defaultProps = {
-  events: null,
+  modalIsOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default Calendar;

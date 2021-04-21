@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { createEvent } from '../../gateway/events.js';
 import PropTypes from 'prop-types';
+import { timeRange } from '../../utils/dateUtils';
 
 import './modal.scss';
 
-const Modal = ({ isOpen, closeModal, getEventsFromServer }) => {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    setUserData({
-      title: '',
-      description: '',
-      date: moment(new Date()).format().slice(0, 10),
-      dateFrom: moment(new Date()).format('HH:mm'),
-      dateTo: moment(new Date()).format('HH:mm'),
-    });
-  }, [isOpen]);
+const Modal = ({ closeModal, getEventsFromServer }) => {
+  const [userData, setUserData] = useState({
+    title: '',
+    description: '',
+    date: moment(new Date()).format().slice(0, 10),
+    dateFrom: moment(new Date()).format('HH:mm'),
+    dateTo: moment(new Date()).format('HH:mm'),
+  });
 
   const onChange = event => {
     const { name, value } = event.target;
-
     setUserData({ ...userData, [name]: value });
   };
 
@@ -32,26 +28,6 @@ const Modal = ({ isOpen, closeModal, getEventsFromServer }) => {
       closeModal();
     });
   };
-
-  if (!isOpen) {
-    return null;
-  }
-
-  const timeRange = new Array(24)
-    .fill()
-    .map((el, index) => {
-      const hourRange = [`${index}:00`, `${index}:15`, `${index}:30`, `${index}:45`];
-      if (
-        index === new Date().getHours() &&
-        !hourRange.includes(moment(new Date()).format('HH:mm'))
-      ) {
-        hourRange.push(moment(new Date()).format('HH:mm'));
-        hourRange.sort();
-      }
-
-      return hourRange;
-    })
-    .flat();
 
   return (
     <div className="modal overlay">
@@ -121,7 +97,6 @@ const Modal = ({ isOpen, closeModal, getEventsFromServer }) => {
 };
 
 Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   getEventsFromServer: PropTypes.func.isRequired,
 };

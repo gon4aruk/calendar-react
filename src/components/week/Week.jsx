@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './week.scss';
 
-const Week = ({ weekDates, events, openPopup }) => {
+const Week = ({ weekDates, events, getEventsFromServer }) => {
   if (!events) {
     return null;
   }
@@ -26,7 +26,7 @@ const Week = ({ weekDates, events, openPopup }) => {
             key={dayStart.getDate()}
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
-            openPopup={openPopup}
+            getEventsFromServer={getEventsFromServer}
           />
         );
       })}
@@ -37,7 +37,7 @@ const Week = ({ weekDates, events, openPopup }) => {
 Week.propTypes = {
   weekDates: PropTypes.array.isRequired,
   events: PropTypes.array,
-  openPopup: PropTypes.func.isRequired,
+  getEventsFromServer: PropTypes.func.isRequired,
 };
 
 Week.defaultProps = {

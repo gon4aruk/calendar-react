@@ -33,36 +33,29 @@
 
 const baseUrl = 'https://60322069081a010017547728.mockapi.io/api/v1/event-react';
 
-export const getEvents = () => {
-  return fetch(baseUrl).then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Failed to load data');
-    }
-  });
-};
+export const getEvents = () => fetch(baseUrl).then((response) => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Failed to load data');
+});
 
-export const createEvent = eventData => {
-  return fetch(baseUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify(eventData),
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to create data');
-    }
-  });
-};
+export const createEvent = (eventData) => fetch(baseUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8',
+  },
+  body: JSON.stringify(eventData),
+}).then((response) => {
+  if (!response.ok) {
+    throw new Error('Failed to create data');
+  }
+});
 
-export const deleteEvent = eventId => {
-  return fetch(`${baseUrl}/${eventId}`, {
-    method: 'DELETE',
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to delete');
-    }
-  });
-};
+export const deleteEvent = (eventId) => fetch(`${baseUrl}/${eventId}`, {
+  method: 'DELETE',
+}).then((response) => {
+  if (!response.ok) {
+    throw new Error('Failed to delete');
+  }
+});

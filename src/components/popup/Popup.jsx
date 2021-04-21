@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { deleteEvent } from '../../gateway/events';
 
 import './popup.scss';
 
-const Popup = ({ popup, handleDeleteEvent }) => {
-  const { popupIsOpen, idToDelete, x, y } = popup;
-
-  if (!popupIsOpen) {
-    return null;
-  }
-  const styles = {
-    top: `${y}px`,
-    left: `${x}px`,
+const Popup = ({ getEventsFromServer, idToDelete }) => {
+  const handleDeleteEvent = eventId => {
+    deleteEvent(eventId).then(() => {
+      getEventsFromServer();
+    });
   };
+
   return (
-    <div className="popup overlay">
-      <div className="popup__overlay"></div>
-      <div className="popup__content" style={styles}>
+    <div className="popup">
+      <div className="popup__content">
         <button className="delete-event-btn" onClick={() => handleDeleteEvent(idToDelete)}>
+          <i className="fas fa-trash delete-event-btn__icon"></i>
           Delete
         </button>
       </div>
@@ -26,8 +24,8 @@ const Popup = ({ popup, handleDeleteEvent }) => {
 };
 
 Popup.propTypes = {
-  popup: PropTypes.object.isRequired,
-  handleDeleteEvent: PropTypes.func.isRequired,
+  getEventsFromServer: PropTypes.func.isRequired,
+  idToDelete: PropTypes.string.isRequired,
 };
 
 export default Popup;

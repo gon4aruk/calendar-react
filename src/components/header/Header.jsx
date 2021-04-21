@@ -5,7 +5,7 @@ import { months } from '../../utils/dateUtils.js';
 
 import './header.scss';
 
-const Header = ({ weekDates, openModal, onChangeWeek }) => {
+const Header = ({ weekDates, openModal, handleCurrentWeek, handleChangeWeek }) => {
   const startWeek = weekDates[0];
   const endWeek = weekDates[weekDates.length - 1];
 
@@ -25,13 +25,13 @@ const Header = ({ weekDates, openModal, onChangeWeek }) => {
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
-        <button className="navigation__today-btn button" onClick={() => onChangeWeek('today')}>
+        <button className="navigation__today-btn button" onClick={handleCurrentWeek}>
           Today
         </button>
-        <button className="icon-button navigation__nav-icon" onClick={() => onChangeWeek('prev')}>
+        <button className="icon-button navigation__nav-icon" onClick={() => handleChangeWeek('prev')}>
           <i className="fas fa-chevron-left" name="prev"></i>
         </button>
-        <button className="icon-button navigation__nav-icon" onClick={() => onChangeWeek('next')}>
+        <button className="icon-button navigation__nav-icon" onClick={() => handleChangeWeek('next')}>
           <i className="fas fa-chevron-right" name="next"></i>
         </button>
         <span className="navigation__displayed-month">{`${currentMonth} ${currentYear}`}</span>
@@ -43,7 +43,8 @@ const Header = ({ weekDates, openModal, onChangeWeek }) => {
 Header.propTypes = {
   weekDates: PropTypes.array.isRequired,
   openModal: PropTypes.func.isRequired,
-  onChangeWeek: PropTypes.func.isRequired,
+  handleCurrentWeek: PropTypes.func.isRequired,
+  handleChangeWeek: PropTypes.func.isRequired,
 };
 
 export default Header;

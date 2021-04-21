@@ -7,7 +7,6 @@ const RedLine = () => {
 
   useEffect(() => {
     const interval = setInterval(() => setTop(new Date().getMinutes()), 1000);
-
     return () => {
       clearInterval(interval);
     };
